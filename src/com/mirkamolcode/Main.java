@@ -99,6 +99,17 @@ public class Main {
                     System.out.println("---------");
                 }
         );
+
+        // Task 20
+        filterTransactionsByEmailDomain
+                (transactions, "example.com").forEach(System.out::println);
+    }
+
+    private static List<Transaction> filterTransactionsByEmailDomain(List<Transaction> transactions, String emailDomain) {
+        return transactions.stream()
+                .filter(transaction ->
+                        transaction.customer().email().contains(emailDomain))
+                .toList();
     }
 
     private static Map<String, List<Transaction>> groupTransactionsByType(List<Transaction> transactions) {
