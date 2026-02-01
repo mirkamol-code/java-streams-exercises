@@ -26,7 +26,7 @@ public class Main {
         List<Transaction> transactions = addData();
 
         // Task 1
-        filterTransactionByType(transactions).forEach(System.out::println);
+        filterTransactionByCreditType(transactions).forEach(System.out::println);
 
         // Task 2
         System.out.println(getTotalAmountOfAllTransactions(transactions));
@@ -79,6 +79,7 @@ public class Main {
         // Task 16
         getTransactionsFrom2024(transactions).forEach(System.out::println);
 
+        // Task 17
         calculateTotalAmountByCustomer(transactions).forEach(
                 (customer, doubleSummaryStatistics) ->{
                     System.out.println(customer);
@@ -86,6 +87,17 @@ public class Main {
                     System.out.println("------");
                 }
         );
+
+        // Task 18
+        filterTransactionByDebitType(transactions).forEach(System.out::println);
+
+    }
+
+    private static List<Transaction> filterTransactionByDebitType(List<Transaction> transactions) {
+        return transactions.stream()
+                .filter(transaction ->
+                        transaction.type().equals("DEBIT"))
+                .toList();
     }
 
     private static Map<Customer, DoubleSummaryStatistics> calculateTotalAmountByCustomer(List<Transaction> transactions) {
@@ -199,7 +211,7 @@ public class Main {
                 .sum();
     }
 
-    private static List<Transaction> filterTransactionByType(List<Transaction> transactions) {
+    private static List<Transaction> filterTransactionByCreditType(List<Transaction> transactions) {
         return transactions.stream()
                 .filter(transaction ->
                         transaction.type().equals("CREDIT"))
