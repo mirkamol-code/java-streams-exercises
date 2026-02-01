@@ -65,6 +65,15 @@ public class Main {
 
         // Task 12
         getTransactionsByCustomer(transactions, "Customer2").forEach(System.out::println);
+
+        // Task 13
+        getDistinctTransactions(transactions).forEach(System.out::println);
+    }
+
+    private static List<Transaction> getDistinctTransactions(List<Transaction> transactions) {
+        return transactions.stream()
+                .distinct()
+                .toList();
     }
 
     private static List<Transaction> getTransactionsByCustomer(List<Transaction> transactions, String name) {
