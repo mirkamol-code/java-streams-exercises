@@ -56,6 +56,17 @@ public class Main {
         // Task 8
         System.out.println(getFirstTransaction(transactions));
 
+        // Task 9
+        System.out.println(checkForAnyHighValueTransaction(transactions));
+
+
+
+    }
+
+    private static boolean checkForAnyHighValueTransaction(List<Transaction> transactions) {
+        return transactions.stream()
+                .anyMatch(transaction ->
+                        transaction.amount() > 1000);
     }
 
     private static Transaction getFirstTransaction(List<Transaction> transactions) {
