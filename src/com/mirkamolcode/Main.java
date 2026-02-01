@@ -71,6 +71,18 @@ public class Main {
 
         // Task 14
         System.out.println(getCustomerNames(transactions));
+
+        // Task 15
+        System.out.println(getEarliestTransaction(transactions));
+
+
+    }
+
+    private static Transaction getEarliestTransaction(List<Transaction> transactions) {
+        return transactions.stream()
+                .sorted(Comparator.comparing(Transaction::date))
+                .findFirst()
+                .get();
     }
 
     private static String getCustomerNames(List<Transaction> transactions) {
