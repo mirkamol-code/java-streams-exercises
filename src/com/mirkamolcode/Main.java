@@ -75,7 +75,15 @@ public class Main {
         // Task 15
         System.out.println(getEarliestTransaction(transactions));
 
+        // Task 16
+        getTransactionsFrom2024(transactions).forEach(System.out::println);
+    }
 
+    private static List<Transaction> getTransactionsFrom2024(List<Transaction> transactions) {
+        return transactions.stream()
+                .filter(transaction ->
+                        transaction.date().startsWith("2024"))
+                .toList();
     }
 
     private static Transaction getEarliestTransaction(List<Transaction> transactions) {
