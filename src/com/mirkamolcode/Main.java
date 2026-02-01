@@ -81,7 +81,7 @@ public class Main {
 
         // Task 17
         calculateTotalAmountByCustomer(transactions).forEach(
-                (customer, doubleSummaryStatistics) ->{
+                (customer, doubleSummaryStatistics) -> {
                     System.out.println(customer);
                     System.out.println(doubleSummaryStatistics.getSum());
                     System.out.println("------");
@@ -91,6 +91,19 @@ public class Main {
         // Task 18
         filterTransactionByDebitType(transactions).forEach(System.out::println);
 
+        // Task 19
+        groupTransactionsByType(transactions).forEach(
+                (type, transactionList) -> {
+                    System.out.println(type);
+                    transactionList.forEach(System.out::println);
+                    System.out.println("---------");
+                }
+        );
+    }
+
+    private static Map<String, List<Transaction>> groupTransactionsByType(List<Transaction> transactions) {
+        return transactions.stream()
+                .collect(Collectors.groupingBy(Transaction::type));
     }
 
     private static List<Transaction> filterTransactionByDebitType(List<Transaction> transactions) {
