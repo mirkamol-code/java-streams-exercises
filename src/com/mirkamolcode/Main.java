@@ -52,6 +52,14 @@ public class Main {
                     transactions1.forEach(System.out::println);
                     System.out.println("-------------------");
                 });
+
+        // Task 8
+        System.out.println(getFirstTransaction(transactions));
+
+    }
+
+    private static Transaction getFirstTransaction(List<Transaction> transactions) {
+        return transactions.stream().findFirst().get();
     }
 
     private static Map<Integer, List<Transaction>> groupTransactionsByCustomer(List<Transaction> transactions) {
