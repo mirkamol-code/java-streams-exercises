@@ -63,6 +63,15 @@ public class Main {
         // Task 11
         System.out.println(calculateAverageTransactionAmount(transactions));
 
+        // Task 12
+        getTransactionsByCustomer(transactions, "Customer2").forEach(System.out::println);
+    }
+
+    private static List<Transaction> getTransactionsByCustomer(List<Transaction> transactions, String name) {
+        return transactions.stream()
+                .filter(transaction ->
+                        transaction.customer().name().equals(name))
+                .toList();
     }
 
     private static Double calculateAverageTransactionAmount(List<Transaction> transactions) {
