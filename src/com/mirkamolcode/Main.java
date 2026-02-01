@@ -3,9 +3,7 @@ package com.mirkamolcode;
 import com.mirkamolcode.models.Customer;
 import com.mirkamolcode.models.Transaction;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -59,8 +57,15 @@ public class Main {
         // Task 9
         System.out.println(checkForAnyHighValueTransaction(transactions));
 
+        // Task 10
+        sortTransactionByAmount(transactions).forEach(System.out::println);
 
+    }
 
+    private static List<Transaction> sortTransactionByAmount(List<Transaction> transactions) {
+        return transactions.stream()
+                .sorted(Comparator.comparing(Transaction::amount))
+                .toList();
     }
 
     private static boolean checkForAnyHighValueTransaction(List<Transaction> transactions) {
