@@ -33,7 +33,25 @@ public class Main {
         // Task 3
         System.out.println(getMaximumTransactionAmount(transactions));
 
+        // Task 4
+        System.out.println(countTransactionsByDebit(transactions));
+        System.out.println(countTransactionsByCredit(transactions));
 
+
+    }
+
+    private static long countTransactionsByCredit(List<Transaction> transactions) {
+        return transactions.stream()
+                .filter(transaction ->
+                        transaction.type().equals("CREDIT"))
+                .count();
+    }
+
+    private static long countTransactionsByDebit(List<Transaction> transactions) {
+        return transactions.stream()
+                .filter(transaction ->
+                        transaction.type().equals("DEBIT"))
+                .count();
     }
 
     private static Double getMaximumTransactionAmount(List<Transaction> transactions) {
@@ -55,6 +73,4 @@ public class Main {
                         transaction.type().equals("CREDIT"))
                 .toList();
     }
-
-
 }
