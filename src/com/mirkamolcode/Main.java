@@ -4,6 +4,7 @@ import com.mirkamolcode.models.Customer;
 import com.mirkamolcode.models.Transaction;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -77,6 +78,22 @@ public class Main {
 
         // Task 16
         getTransactionsFrom2024(transactions).forEach(System.out::println);
+
+        calculateTotalAmountByCustomer(transactions).forEach(
+                (customer, doubleSummaryStatistics) ->{
+                    System.out.println(customer);
+                    System.out.println(doubleSummaryStatistics.getSum());
+                    System.out.println("------");
+                }
+        );
+    }
+
+    private static Map<Customer, DoubleSummaryStatistics> calculateTotalAmountByCustomer(List<Transaction> transactions) {
+        return transactions.stream()
+                .collect(Collectors.groupingBy(
+                        Transaction::customer,
+                        Collectors.summarizingDouble(Transaction::amount)
+                ));
     }
 
     private static List<Transaction> getTransactionsFrom2024(List<Transaction> transactions) {
