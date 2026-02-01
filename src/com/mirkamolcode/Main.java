@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-   static List<Transaction> addData() {
-       List<Transaction> transactions = new ArrayList<>();
+    static List<Transaction> addData() {
+        List<Transaction> transactions = new ArrayList<>();
         for (int i = 1; i <= 100; i++) {
             transactions.add(new Transaction(
                     i,
@@ -22,17 +22,29 @@ public class Main {
     }
 
     static void main() {
-       // Task 1
-       filterTransactionByType().forEach(System.out::println);
+        List<Transaction> transactions = addData();
+
+        // Task 1
+        filterTransactionByType(transactions).forEach(System.out::println);
+
+        // Task 2
+        System.out.println(getTotalAmountOfAllTransactions(transactions));
 
 
     }
 
-    private static List<Transaction> filterTransactionByType() {
-        List<Transaction> transactions = addData();
+    private static Double getTotalAmountOfAllTransactions(List<Transaction> transactions) {
+        return transactions.stream()
+                .mapToDouble(Transaction::amount)
+                .sum();
+    }
+
+    private static List<Transaction> filterTransactionByType(List<Transaction> transactions) {
         return transactions.stream()
                 .filter(transaction ->
                         transaction.type().equals("CREDIT"))
                 .toList();
     }
+
+
 }
