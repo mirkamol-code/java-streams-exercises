@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
-   static void addData(List<Transaction> transactions) {
+   static List<Transaction> addData() {
+       List<Transaction> transactions = new ArrayList<>();
         for (int i = 1; i <= 100; i++) {
             transactions.add(new Transaction(
                     i,
@@ -17,11 +18,21 @@ public class Main {
                     new Customer(i, "Customer" + i, "customer" + i + "@example.com")
             ));
         }
+        return transactions;
     }
 
     static void main() {
-        List<Transaction> transactions = new ArrayList<>();
-        addData(transactions);
-        transactions.forEach(System.out::println);
+       // Task 1
+       filterTransactionByType().forEach(System.out::println);
+
+
+    }
+
+    private static List<Transaction> filterTransactionByType() {
+        List<Transaction> transactions = addData();
+        return transactions.stream()
+                .filter(transaction ->
+                        transaction.type().equals("CREDIT"))
+                .toList();
     }
 }
