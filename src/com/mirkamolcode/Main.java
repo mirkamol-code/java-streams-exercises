@@ -5,6 +5,8 @@ import com.mirkamolcode.models.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Main {
     static List<Transaction> addData() {
@@ -42,6 +44,20 @@ public class Main {
 
         // Task 6
         getTransactionsAboveThreshold(transactions).forEach(System.out::println);
+
+        // Task 7
+        groupTransactionsByCustomer(transactions)
+                .forEach((customer, transactions1) -> {
+                    System.out.println("Customer id: " + customer);
+                    transactions1.forEach(System.out::println);
+                    System.out.println("-------------------");
+                });
+    }
+
+    private static Map<Integer, List<Transaction>> groupTransactionsByCustomer(List<Transaction> transactions) {
+        return transactions
+                .stream()
+                .collect(Collectors.groupingBy(transaction -> transaction.customer().id()));
     }
 
     private static List<Transaction> getTransactionsAboveThreshold(List<Transaction> transactions) {
