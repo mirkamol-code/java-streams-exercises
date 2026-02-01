@@ -68,6 +68,15 @@ public class Main {
 
         // Task 13
         getDistinctTransactions(transactions).forEach(System.out::println);
+
+        // Task 14
+        System.out.println(getCustomerNames(transactions));
+    }
+
+    private static String getCustomerNames(List<Transaction> transactions) {
+        return transactions.stream()
+                .map(transaction -> transaction.customer().name())
+                .collect(Collectors.joining(", "));
     }
 
     private static List<Transaction> getDistinctTransactions(List<Transaction> transactions) {
