@@ -30,7 +30,17 @@ public class Main {
         // Task 2
         System.out.println(getTotalAmountOfAllTransactions(transactions));
 
+        // Task 3
+        System.out.println(getMaximumTransactionAmount(transactions));
 
+
+    }
+
+    private static Double getMaximumTransactionAmount(List<Transaction> transactions) {
+        return transactions.stream()
+                .mapToDouble(Transaction::amount)
+                .max()
+                .orElse(0);
     }
 
     private static Double getTotalAmountOfAllTransactions(List<Transaction> transactions) {
