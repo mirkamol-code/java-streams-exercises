@@ -60,6 +60,16 @@ public class Main {
         // Task 10
         sortTransactionByAmount(transactions).forEach(System.out::println);
 
+        // Task 11
+        System.out.println(calculateAverageTransactionAmount(transactions));
+
+    }
+
+    private static Double calculateAverageTransactionAmount(List<Transaction> transactions) {
+        return transactions.stream()
+                .mapToDouble(Transaction::amount)
+                .average()
+                .orElse(0);
     }
 
     private static List<Transaction> sortTransactionByAmount(List<Transaction> transactions) {
