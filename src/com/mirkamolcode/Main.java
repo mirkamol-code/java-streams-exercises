@@ -39,6 +39,16 @@ public class Main {
 
         // Task 5
         getDistinctCustomers(transactions).forEach(System.out::println);
+
+        // Task 6
+        getTransactionsAboveThreshold(transactions).forEach(System.out::println);
+    }
+
+    private static List<Transaction> getTransactionsAboveThreshold(List<Transaction> transactions) {
+        return transactions.stream()
+                .filter(transaction ->
+                        transaction.amount() > 300)
+                .toList();
     }
 
     private static List<Customer> getDistinctCustomers(List<Transaction> transactions) {
