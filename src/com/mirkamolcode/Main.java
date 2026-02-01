@@ -37,7 +37,15 @@ public class Main {
         System.out.println(countTransactionsByDebit(transactions));
         System.out.println(countTransactionsByCredit(transactions));
 
+        // Task 5
+        getDistinctCustomers(transactions).forEach(System.out::println);
+    }
 
+    private static List<Customer> getDistinctCustomers(List<Transaction> transactions) {
+        return transactions.stream()
+                .map(Transaction::customer)
+                .distinct()
+                .toList();
     }
 
     private static long countTransactionsByCredit(List<Transaction> transactions) {
